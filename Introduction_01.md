@@ -14,7 +14,7 @@
   - Pull requests  
   - Code reviews  
   - Project collaboration tools  
-These help teams work efficiently and maintain high-quality code.
+* These help teams work efficiently and maintain high-quality code.
 
 ---
 
@@ -84,13 +84,9 @@ It is:
 
 #  GIT WORKFLOW (Git Lifecycle)
 
-```
-
 git init → git add → git commit → git push
 
 <img width="1339" height="277" alt="image" src="https://github.com/user-attachments/assets/9037a792-4b9b-4986-980f-8fe0800edd87" />
-
-```  
 
 ---
 
