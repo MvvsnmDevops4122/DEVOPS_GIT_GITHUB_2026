@@ -230,9 +230,3 @@ git show --pretty="" --name-only 93bc198a48166ce5ff14ad2e3df9908c85caf150
   - GitHub Actions  
 
 ---
-
----
-
-If you want next:
-👉 I can convert this into **real-time hands-on lab (step-by-step commands)**
-👉 or **Git branching + merging practice (very important for interviews)** 🚀
