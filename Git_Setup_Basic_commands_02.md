@@ -227,6 +227,202 @@ git show --pretty="" --name-only 93bc198a48166ce5ff14ad2e3df9908c85caf150
 - Track changes and rollback easily  
 - Integrate with CI/CD tools like:
   - Jenkins  
-  - GitHub Actions  
+  - GitHub Actions
+
+
+---
+
+## **Q1: What is the difference between `git add .` and `git add *`?**
+
+| Command      | Behavior |
+|--------------|----------|
+| `git add .`  | Adds all files — new, modified, including hidden files and files inside subfolders.
+| `git add *`  | Adds only visible (non-hidden) files from the current folder. Skips hidden files and files inside subfolders.
+
+**Tip:**  
+`git add .` is the most commonly used as it handles everything.
+
+---
+
+## **Q2: How to remove untracked files from the working directory?**
+
+```bash
+git clean -f
+````
+
+* Removes **untracked** files
+* Does **not** remove tracked files
+
+---
+
+## **Q3: Is it possible to move files from staging area back to working directory?**
+
+Yes:
+
+```bash
+git reset <file>
+# or
+git restore --staged <file>
+```
+
+This removes the file from staging but keeps the changes.
+
+---
+
+## **Q4: Due to a bad commit, the application is not working. How to revert it?**
+
+```bash
+git revert <commit_id>
+```
+
+* Creates a **new commit** that reverses the changes
+* Safe for remote repos (does NOT rewrite history)
+
+---
+
+## **Q5: How to delete updated code in the remote repository?**
+
+### Step 1: Reset local branch to previous commit
+
+```bash
+git reset --hard <commit_id>
+```
+
+### Step 2: Force-push the corrected branch
+
+```bash
+git push --force
+```
+
+⚠️ **Warning:** This rewrites history. Use carefully.
+
+---
+
+## **Q6: Difference between `git reset` and `git revert`?**
+
+| Command      | Description                                                                          |
+| ------------ | ------------------------------------------------------------------------------------ |
+| `git reset`  | Moves all staged files back to working area                                          |
+| `git revert` | creates a new commit to undo the changes made by a specific commit                   |
+
+---
+
+## **Q7: What is a `.gitignore` file?**
+
+.gitignore file tell Git which files and folders to ignore(not track)
+
+**Example:**
+
+```
+*.log
+node_modules/
+.env
+target/
+```
+
+Used to skip logs, temp files, secrets, build files, etc.
+
+---
+
+# 🎯 Bonus: Real-Time Git Tips
+
+---
+
+### **1. View status of tracked and staged files**
+
+```bash
+git status
+```
+
+---
+
+### **2. See commit history**
+
+```bash
+git log
+```
+
+---
+
+### **3. Undo last local commit (but keep changes)**
+
+```bash
+git reset --soft HEAD~1
+```
+
+---
+
+### **4. Remove a file from staging**
+
+```bash
+git restore --staged <file>
+```
+
+---
+
+# 🔥 Real-Time Use Case
+
+### **Scenario:**
+
+You committed a file to GitHub by mistake.
+
+### **Solution:**
+
+```bash
+git reset --soft HEAD~1
+git restore --staged <file>
+git commit -m "Fixed accidental commit"
+git push -f
+```
+
+### SUMMARY - RESET, REVERT
+
+## **1. Git Reset (Unstage Files)**
+
+```bash
+git reset                            # Unstage all files/Moves all staged files back to working area
+git reset filename                   # Unstage one file/Moves only the specified file
+git reset .                          # Unstage everything including hidden files/To unstage all the files including hidden ones
+```
+
+---
+
+## **2. Git Clean (Remove Untracked Files)**
+
+* Removing files from the working directory
+
+```bash
+git clean -n                         # Dry run – shows which files will be deleted
+git clean -f                         # Forcefully deletes all untracked files
+git clean -f filename                # Forcefully deletes particular untracked file.
+```
+
+---
+
+## **3. Git Revert (Undo a Commit With a New Commit)**
+
+```bash
+git revert <commit-id>        #creates a new commit to undo the changes made by a specific commit.
+```
+
+📌 Examples:
+
+* **Revert new file commit:** Delete the file
+* **Revert updated file commit:** Undo the change inside the file
+
+                         revert
+EX: New file (commit)  ------------> delete the file
+
+                            revert
+  Updated File (commit) -----------> Delete only data inside the file
+  
+---
+
+## **4. Git Ignore**
+
+.gitignore                          # .gitignore file tell Git which files and folders to ignore(not track)
+
+---
+
 
 ---
