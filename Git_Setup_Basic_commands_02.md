@@ -424,5 +424,57 @@ EX: New file (commit)  ------------> delete the file
 
 ---
 
+# 🔹 Git Reset – Short Notes
+
+## 📌 `git reset --soft HEAD~1`
+
+* Removes last commit
+* Keeps changes in **staging area**
+* No data loss
+
+👉 Use when:
+
+* You want to fix commit message
+* You want to recommit
 
 ---
+
+## 📌 `git reset --hard HEAD~1`
+
+* Removes last commit
+* Deletes changes from:
+
+  * Staging
+  * Working directory
+* **Data lost permanently ❗**
+
+👉 Use when:
+
+* You want to discard changes completely
+
+---
+
+## 🔹 Quick Difference
+
+| Command  | Commit | Staging | Working |
+| -------- | ------ | ------- | ------- |
+| `--soft` | ❌      | ✅       | ✅       |
+| `--hard` | ❌      | ❌       | ❌       |
+
+---
+
+## 🔹 Key Point
+
+👉 `HEAD~1` = go back 1 commit
+
+---
+
+## 🔥 Interview One-Liner
+
+* **Soft:** Undo commit, keep changes
+* **Hard:** Undo commit + delete changes
+
+---
+
+If you want, I can give:
+👉 **git reset --mixed (default) + examples** (very important) 🚀
