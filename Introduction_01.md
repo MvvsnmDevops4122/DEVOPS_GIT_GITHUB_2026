@@ -54,7 +54,7 @@
 9.Manage access as needed
 10.Remove members, delete teams, or repositories — only when required and with proper approval
 
-
+---
 ## **2. GitHub Setup Steps**
 
 ### **Step 1: Create a GitHub Account**
@@ -253,6 +253,23 @@ git init → git add → git commit → git push
 
 ---
 
+# 🧠 GIT
+---
+
+* Git stands for **Global Information Tracker**.  
+
+* It is a version control tool used to track changes in files throughout the development process.  
+
+* Git helps maintain multiple versions of the same file, allowing developers to:
+  - Compare changes  
+  - Revert changes  
+  - Manage versions easily  
+
+* It is:
+  - Free  
+  - Open-source  
+  - Widely used in software development  
+---
 #  WORKING DIRECTORY (Working Area)
 
 - The Working Directory is your local project folder where you create, edit, and modify files.
