@@ -167,217 +167,7 @@ git clone <repo_url>                             # Clones a repository from a re
 ```
 
 ---
-
-# 💡 Git Interview Q&A
-
----
-
-## Q1: Can you remove a Git remote alias?
-👉 Yes
-
-```
-
-git remote remove jio
-
-```
-
----
-
-## Q2: How to skip git add for modified files?
-
-```
-
-git commit -a -m "Updated code"
-
-```
-
-🔹 Works only for tracked files
-
----
-
-## Q3: Where are Git credentials stored?
-
-- Windows → Credential Manager  
-- macOS → Keychain Access  
-
----
-
-## Q4: How to view files changed in a specific commit?
-
-```
-
-git show --pretty="" --name-only <commit_id>
-
-```
-
-### Example:
-
-```
-
-git show --pretty="" --name-only 93bc198a48166ce5ff14ad2e3df9908c85caf150
-
-```
-
----
-
-#  Why DevOps Engineers Need Git?
-
-- Manage scripts, YAML, Terraform files  
-- Enable team collaboration  
-- Track changes and rollback easily  
-- Integrate with CI/CD tools like:
-  - Jenkins  
-  - GitHub Actions
-
-
----
-
-## **Q1: What is the difference between `git add .` and `git add *`?**
-
-| Command      | Behavior |
-|--------------|----------|
-| `git add .`  | Adds all files — new, modified, including hidden files and files inside subfolders.
-| `git add *`  | Adds only visible (non-hidden) files from the current folder. Skips hidden files and files inside subfolders.
-
-**Tip:**  
-`git add .` is the most commonly used as it handles everything.
-
----
-
-## **Q2: How to remove untracked files from the working directory?**
-
-```bash
-git clean -f
-````
-
-* Removes **untracked** files
-* Does **not** remove tracked files
-
----
-
-## **Q3: Is it possible to move files from staging area back to working directory?**
-
-Yes:
-
-```bash
-git reset <file>
-# or
-git restore --staged <file>
-```
-
-This removes the file from staging but keeps the changes.
-
----
-
-## **Q4: Due to a bad commit, the application is not working. How to revert it?**
-
-```bash
-git revert <commit_id>
-```
-
-* Creates a **new commit** that reverses the changes
-* Safe for remote repos (does NOT rewrite history)
-
----
-
-## **Q5: How to delete updated code in the remote repository?**
-
-### Step 1: Reset local branch to previous commit
-
-```bash
-git reset --hard <commit_id>
-```
-
-### Step 2: Force-push the corrected branch
-
-```bash
-git push --force
-```
-
-⚠️ **Warning:** This rewrites history. Use carefully.
-
----
-
-## **Q6: Difference between `git reset` and `git revert`?**
-
-| Command      | Description                                                                          |
-| ------------ | ------------------------------------------------------------------------------------ |
-| `git reset`  | Moves all staged files back to working area                                          |
-| `git revert` | creates a new commit to undo the changes made by a specific commit                   |
-
----
-
-## **Q7: What is a `.gitignore` file?**
-
-.gitignore file tell Git which files and folders to ignore(not track)
-
-**Example:**
-
-```
-*.log
-node_modules/
-.env
-target/
-```
-
-Used to skip logs, temp files, secrets, build files, etc.
-
----
-
-# 🎯 Bonus: Real-Time Git Tips
-
----
-
-### **1. View status of tracked and staged files**
-
-```bash
-git status
-```
-
----
-
-### **2. See commit history**
-
-```bash
-git log
-```
-
----
-
-### **3. Undo last local commit (but keep changes)**
-
-```bash
-git reset --soft HEAD~1
-```
-
----
-
-### **4. Remove a file from staging**
-
-```bash
-git restore --staged <file>
-```
-
----
-
-# 🔥 Real-Time Use Case
-
-### **Scenario:**
-
-You committed a file to GitHub by mistake.
-
-### **Solution:**
-
-```bash
-git reset --soft HEAD~1
-git restore --staged <file>
-git commit -m "Fixed accidental commit"
-git push -f
-```
-
-### SUMMARY - RESET, REVERT
-
-## **1. Git Reset (Unstage Files)**
+## **10. Git Reset (Unstage Files)**
 
 ```bash
 git reset                            # Unstage all files/Moves all staged files back to working area
@@ -387,7 +177,7 @@ git reset .                          # Unstage everything including hidden files
 
 ---
 
-## **2. Git Clean (Remove Untracked Files)**
+## **11. Git Clean (Remove Untracked Files)**
 
 * Removing files from the working directory
 
@@ -399,7 +189,7 @@ git clean -f filename                # Forcefully deletes particular untracked f
 
 ---
 
-## **3. Git Revert (Undo a Commit With a New Commit)**
+## **12. Git Revert (Undo a Commit With a New Commit)**
 
 ```bash
 git revert <commit-id>        #creates a new commit to undo the changes made by a specific commit.
@@ -416,6 +206,20 @@ EX: New file (commit)  ------------> delete the file
                             revert
   Updated File (commit) -----------> Delete only data inside the file
   
+---
+### Git Revert (Undo Pushed Changes)
+
+📌 Command
+```bash
+git revert HEAD
+git push origin main
+
+```
+📖 Description
+git revert HEAD → Undo last commit
+Creates a new commit to reverse changes
+git push origin main → Update remote repo
+
 ---
 
 ## **4. Git Ignore**
@@ -469,12 +273,144 @@ EX: New file (commit)  ------------> delete the file
 
 ---
 
-## 🔥 Interview One-Liner
+# 🌿 **13. Git Branch (Create / Delete / Rename / Switch)**
 
-* **Soft:** Undo commit, keep changes
-* **Hard:** Undo commit + delete changes
+```bash
+git branch                           # List local branches
+git branch <name>                    # Create branch
+git checkout <name>                  # Switch from one branch to another branch
+git switch <name>                    # Alternative command
+git branch -d <name>                 # Delete branch
+git branch -D <name>                 # To delete a branch forcefully
+git checkout -b <name>               # Create + switch/Used to create and switch branch at a time
+git switch -c <name>                 # Create + switch
+git branch -m old new                # Rename branch
+git push <alias> branch1 branch2     # Push specific branches
+git push <alias> --all               # Push all branches
+git branch -r                        # List remote branches
+git branch -a                        # To see all the branches(local and remote)
+git pull <alias> branch              # To get updated code from remote branch
+git push origin --delete branch      # Delete Remote Branches from  CLI
+git push origin --delete branch && git branch -d branch   # Delete remote repo branch and local repo branch (same)
+
+```
 
 ---
 
-If you want, I can give:
-👉 **git reset --mixed (default) + examples** (very important) 🚀
+# 🔀 **14. Git Merge**
+
+```bash
+git merge branch-name                # Merge a branch into current branch
+git diff branch-name                 # Compare branches
+```
+
+---
+
+# 🏷️ **15. Git Tag**
+
+A tag marks a specific commit, usually after a stable or production release.
+
+### Tag Commands
+
+```bash
+git tag                               # List tags
+git tag <tag-name>                    # Create lightweight tag
+git tag -a v1.0 -m "Message"          # Create annotated tag
+git push <alias> <tag-name>           # Push single tag
+git push <alias> --tags               # Push all tags
+git show <tag-name>                   # View tag details
+git tag -d <tag-name>                 # Delete tag locally
+git push <alias> --delete <tag-name>  # Delete remote tag
+git tag -a v0.9.0 <commit> -m "old release"   # Tag previous commit
+```
+
+---
+
+# 💾 **16. Git Stash (Temporary Save Work)**
+
+### Example Scenario
+
+Working on *dev*, urgent fix in *master* → use stash.
+
+### Commands
+
+```bash
+git stash                             # Stash changes
+git stash save "message"              # Save with message
+git stash list                        # View stashes
+git stash apply stash@{id}            # Apply stash
+git stash pop                         # Apply + delete stash
+git stash drop                        # Delete latest stash
+git stash drop stash@{id}             # Delete specific stash
+git stash clear                       # Delete all stashes
+```
+
+---
+
+### Q1: Local repo size increasing?
+
+→ Delete unused stashes:
+
+```bash
+git stash drop
+git stash drop stash@{5}
+git stash clear
+```
+
+---
+
+### Q2: Difference Between Branch & Tag
+
+| Branch                     | Tag                      |
+| -------------------------- | ------------------------ |
+| Mutable                    | Immutable                |
+| Created during development | Created after production |
+| Contains ongoing work      | Marks a specific version |
+| Can be deleted             | Stays as version label   |
+
+---
+
+# 🔄 **17. Git Restore**
+
+```bash
+git restore filename     # Undo changes in working directory
+```
+
+---
+
+# 🧭 **18. Git Best Practices**
+
+* Don’t commit incomplete code
+* Test before commit
+* Use meaningful commit messages
+* Avoid merge conflicts
+* Always raise Pull Requests (avoid blind merges)
+* Delete unused branches
+* Clean old stashes
+
+---
+
+# 📥 **19. Git Clone**
+
+```bash
+git clone <url>
+```
+
+### Steps:
+
+1. Create a folder
+2. Go inside
+3. Run `git clone <url>`
+4. Create a staging branch and start working
+
+Default alias: **origin**
+
+Rename:
+
+```bash
+git remote rename origin <alias>
+git remote -v
+```
+
+---
+
