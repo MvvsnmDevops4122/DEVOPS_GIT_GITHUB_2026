@@ -273,39 +273,6 @@ git push origin main → Update remote repo
 
 ---
 
-# 🌿 **13. Git Branch (Create / Delete / Rename / Switch)**
-
-```bash
-git branch                           # List local branches
-git branch <name>                    # Create branch
-git checkout <name>                  # Switch from one branch to another branch
-git switch <name>                    # Alternative command
-git branch -d <name>                 # Delete branch
-git branch -D <name>                 # To delete a branch forcefully
-git checkout -b <name>               # Create + switch/Used to create and switch branch at a time
-git switch -c <name>                 # Create + switch
-git branch -m old new                # Rename branch
-git push <alias> branch1 branch2     # Push specific branches
-git push <alias> --all               # Push all branches
-git branch -r                        # List remote branches
-git branch -a                        # To see all the branches(local and remote)
-git pull <alias> branch              # To get updated code from remote branch
-git push origin --delete branch      # Delete Remote Branches from  CLI
-git push origin --delete branch && git branch -d branch   # Delete remote repo branch and local repo branch (same)
-
-```
-
----
-
-# 🔀 **14. Git Merge**
-
-```bash
-git merge branch-name                # Merge a branch into current branch
-git diff branch-name                 # Compare branches
-```
-
----
-
 # 🏷️ **15. Git Tag**
 
 A tag marks a specific commit, usually after a stable or production release.
