@@ -408,3 +408,54 @@ git branch
 * `git checkout -b branch origin/branch` → use it locally
 
 ---
+### Git Cherry-Pick
+🔹 Definition : git cherry-pick is used to apply a specific commit from one branch into another branch.
+
+👉 Instead of merging the entire branch, you pick only the required commit.
+
+🔹 Syntax
+```
+git cherry-pick <commit-id>
+```
+---
+### Git Pull vs Git Fetch
+
+# Git Fetch
+📌 Definition: git fetch downloads the latest changes from the remote repository but does NOT apply them to your current branch.
+
+🔧 Commands
+```
+git fetch origin test
+git merge origin/test
+```
+
+🧠 Explanation
+git fetch origin test → Downloads changes from remote branch test
+git merge origin/test → Applies those changes to your current branch
+
+👉 So:
+
+Fetch → Download only
+Merge → Apply changes
+
+✅ Advantages
+
+Safe operation
+
+No automatic changes to your code
+You can review changes before merging
+
+# Git Pull
+📌 Definition: git pull is a shortcut that performs fetch + merge in one command.
+
+🔧 Command
+```
+git pull origin test
+```
+🧠 Explanation
+Fetches latest changes from test branch
+Automatically merges into your current branch
+
+👉 So:
+
+Pull = Fetch + Merge
