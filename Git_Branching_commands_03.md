@@ -188,30 +188,121 @@ git stash
 
 # **5. What is a Merge Conflict?**
 
-Occurs when:
+A merge conflict happens when Git is unable to automatically merge changes from two branches.
 
-* Two branches modify the same file
-* Same line
-* Different content
+👉 This occurs when:
 
-Conflict markers:
+Same file is modified in both branches
+Same line is changed differently
+One branch deletes a file, another modifies it.
 
+### 🧑‍💻 Step 1: Create a Repository
+
+```
+mkdir merge-conflict-demo
+cd merge-conflict-demo
+git init
+
+```
+Create a file:
+```
+vi Demo.java
+```
+Add:
+```
+public class Demo {
+    public static void main(String[] args) {
+        int value = 5;
+        System.out.println("Value = " + value);
+    }
+}
+```
+Save and commit:
+```
+git add .
+git commit -m "Initial commit"
+```
+# Step 2: Create a Feature Branch
+
+```
+git checkout -b feature
+```
+Modify file:
+
+```
+int value = 10;
+```
+Commit:
+```
+git commit -am "Feature branch change value to 10"
+```
+
+# Step 3: Switch to Main Branch
+
+```
+git checkout master
+
+```
+Modify same line:
+```
+int value = 5;
+```
+Change to:
+```
+int value = 20;
+```
+Commit:
+```
+git commit -am "Main branch change value to 20"
+```
+# Step 4: Merge → Conflict Happens
+
+```
+git merge feature
+```
+👉 You will see:
+```
+CONFLICT (content): Merge conflict in Demo.java
+```
+# Step 5: Open the File
+
+```
+vi Demo.java
+```
+You will see:
 ```
 <<<<<<< HEAD
-Adding new feature = 5
+int value = 20;
 =======
-Adding new feature = 10
+int value = 10;
 >>>>>>> feature
 ```
+# Step 6: Fix Manually
+Choose one OR combine:
+```
+int value = 20;
+```
+Option 2 (choose feature)
+```
+int value = 10;
+```
+Option 3 (combine)
+```
+int value = 20; // from main
+// OR use logic if needed
+```
+Remove all markers (<<<<, ====, >>>>)
 
-Fix manually and commit:
+# Step 7: Mark as Resolved
 
 ```
+git add Demo.java
 git commit -m "Resolved merge conflict in Demo.java"
 ```
-
----
-
+# Step 8: Verify
+```
+git log --oneline --graph
+```
 # **6. How to Push a New Branch to GitHub – Full Steps**
 
 ### **Step 1: Check Local Branches**
