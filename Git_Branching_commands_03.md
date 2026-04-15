@@ -459,3 +459,120 @@ Automatically merges into your current branch
 👉 So:
 
 Pull = Fetch + Merge
+
+---
+
+ ### Git Merge Strategies
+ 
+🔹 Definition: Merge strategies in Git define how changes from different branches are combined during a merge.
+ 
+👉 Git uses different strategies depending on branch history and conflicts.
+
+# 🔀 Git Merge Strategies
+
+## 🔹 1. Fast-Forward Merge
+
+### 📌 Definition
+
+Fast-forward merge happens when the target(main) branch has **no new commits** after the feature branch was created.
+
+👉 Git simply moves the branch pointer forward (no merge commit created)
+
+---
+
+### 🧠 How It Works (Concept)
+
+```
+A---B---C (main)
+         \
+          D---E (feature)
+```
+
+👉 `main` has no new commits after branching
+
+After merge:
+
+```
+A---B---C---D---E (main)
+```
+
+✔ No extra commit
+✔ Clean linear history
+
+---
+
+### 🔧 Practical (Hands-On)
+
+#### Step 1: Create Repository
+
+```bash
+git init ff-demo
+cd ff-demo
+```
+
+---
+
+#### Step 2: Create Initial Commit
+
+```bash
+echo "Version 1" > file.txt
+git add file.txt
+git commit -m "Initial commit"
+```
+
+---
+
+#### Step 3: Create Feature Branch
+
+```bash
+git checkout -b feature
+```
+
+---
+
+#### Step 4: Add Changes in Feature Branch
+
+```bash
+echo "Feature change 1" >> file.txt
+git commit -am "Feature commit 1"
+
+echo "Feature change 2" >> file.txt
+git commit -am "Feature commit 2"
+```
+
+---
+
+#### Step 5: Switch Back to Main
+
+```bash
+git checkout master
+```
+
+👉 IMPORTANT: Do NOT make any changes in main
+
+---
+
+#### Step 6: Perform Merge
+
+```bash
+git merge feature
+```
+
+---
+
+### ✅ Result
+
+```bash
+git log --oneline --graph
+```
+
+Output:
+
+```
+A---B---C---D---E (main)
+```
+
+✔ Fast-forward merge happened
+✔ No merge commit
+
+---
