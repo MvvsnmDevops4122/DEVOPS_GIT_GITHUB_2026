@@ -54,7 +54,7 @@ cd ..
 
 #  Basic Git Commands
 
-## 1. Install Git
+## . Install Git
 
 ```
 
@@ -66,7 +66,7 @@ git init                    # Initialize Git repo in a directory
 
 ---
 
-## 2. Git Add (Tracking Files)
+## . Git Add (Tracking Files)
 
 ```
 
@@ -79,7 +79,7 @@ git rm --cached filename    # Untrack a file
 
 ---
 
-## 3. Git Status
+## . Git Status
 
 ```
 
@@ -89,7 +89,7 @@ git status                  # Check tracked and untracked files
 
 ---
 
-## 4. Git Config (Username & Email)
+## . Git Config (Username & Email)
 
 * Before making any commits, you should configure your Git username and email.
 
@@ -103,7 +103,7 @@ git config --list                                          # View all Git settin
 
 ---
 
-## 5. Git Commit (Saving Work)
+## . Git Commit (Saving Work)
 
 ```
 
@@ -122,7 +122,7 @@ git commit -am does NOT work for new or untracked files.It only stages and commi
 
 ---
 
-## 6. Git Log (Commit History)
+## . Git Log (Commit History)
 
 ```
 
@@ -137,7 +137,7 @@ git log --follow --oneline --all     # History of a single file
 
 ---
 
-## 7. Git Show (Commit Details)
+## . Git Show (Commit Details)
 
 ```
 
@@ -149,7 +149,7 @@ git show --pretty="" --name-only     # Same output (only file names)
 
 ---
 
-##  8. Connect Local Repo to Remote Repository (GitHub)
+##  . Connect Local Repo to Remote Repository (GitHub)
 
 * Before pushing your changes, always make sure your local branch is updated with the latest code from the remote repository.
 
@@ -167,7 +167,7 @@ git clone <repo_url>                             # Clones a repository from a re
 ```
 
 ---
-## **10. Git Reset (Unstage Files)**
+## **. Git Reset (Unstage Files)**
 
 ```bash
 git reset                            # Unstage all files/Moves all staged files back to working area
@@ -177,7 +177,7 @@ git reset .                          # Unstage everything including hidden files
 
 ---
 
-## **11. Git Clean (Remove Untracked Files)**
+## **. Git Clean (Remove Untracked Files)**
 
 * Removing files from the working directory
 
@@ -189,7 +189,7 @@ git clean -f filename                # Forcefully deletes particular untracked f
 
 ---
 
-## **12. Git Revert (Undo a Commit With a New Commit)**
+## **. Git Revert (Undo a Commit With a New Commit)**
 
 ```bash
 git revert <commit-id>        #creates a new commit to undo the changes made by a specific commit.
@@ -222,7 +222,7 @@ git push origin main → Update remote repo
 
 ---
 
-## **4. Git Ignore**
+## **. Git Ignore**
 
 .gitignore                          # .gitignore file tell Git which files and folders to ignore(not track)
 
@@ -273,111 +273,9 @@ git push origin main → Update remote repo
 
 ---
 
-# 🏷️ **15. Git Tag**
-
-A tag marks a specific commit, usually after a stable or production release.
-
-### Tag Commands
-
-```bash
-git tag                               # List tags
-git tag <tag-name>                    # Create lightweight tag
-git tag -a v1.0 -m "Message"          # Create annotated tag
-git push <alias> <tag-name>           # Push single tag
-git push <alias> --tags               # Push all tags
-git show <tag-name>                   # View tag details
-git tag -d <tag-name>                 # Delete tag locally
-git push <alias> --delete <tag-name>  # Delete remote tag
-git tag -a v0.9.0 <commit> -m "old release"   # Tag previous commit
-```
-
----
-
-# 💾 **16. Git Stash (Temporary Save Work)**
-
-### Example Scenario
-
-Working on *dev*, urgent fix in *master* → use stash.
-
-### Commands
-
-```bash
-git stash                             # Stash changes
-git stash save "message"              # Save with message
-git stash list                        # View stashes
-git stash apply stash@{id}            # Apply stash
-git stash pop                         # Apply + delete stash
-git stash drop                        # Delete latest stash
-git stash drop stash@{id}             # Delete specific stash
-git stash clear                       # Delete all stashes
-```
-
----
-
-### Q1: Local repo size increasing?
-
-→ Delete unused stashes:
-
-```bash
-git stash drop
-git stash drop stash@{5}
-git stash clear
-```
-
----
-
-### Q2: Difference Between Branch & Tag
-
-| Branch                     | Tag                      |
-| -------------------------- | ------------------------ |
-| Mutable                    | Immutable                |
-| Created during development | Created after production |
-| Contains ongoing work      | Marks a specific version |
-| Can be deleted             | Stays as version label   |
-
----
-
-# 🔄 **17. Git Restore**
+# 🔄 **. Git Restore**
 
 ```bash
 git restore filename     # Undo changes in working directory
 ```
-
 ---
-
-# 🧭 **18. Git Best Practices**
-
-* Don’t commit incomplete code
-* Test before commit
-* Use meaningful commit messages
-* Avoid merge conflicts
-* Always raise Pull Requests (avoid blind merges)
-* Delete unused branches
-* Clean old stashes
-
----
-
-# 📥 **19. Git Clone**
-
-```bash
-git clone <url>
-```
-
-### Steps:
-
-1. Create a folder
-2. Go inside
-3. Run `git clone <url>`
-4. Create a staging branch and start working
-
-Default alias: **origin**
-
-Rename:
-
-```bash
-git remote rename origin <alias>
-git remote -v
-```
-
----
-
