@@ -576,3 +576,146 @@ A---B---C---D---E (main)
 ✔ No merge commit
 
 ---
+
+# 🔀 Three-Way Merge (Recursive Merge) – ORT Strategy
+
+## 📌 Definition
+
+* Three-way merge is used when both source and target branches have new commits.
+* Git compares the common ancestor, source branch, and target branch.
+* It combines all changes and creates a new merge commit.
+* Git uses the ORT strategy (default) to perform this merge efficiently.
+
+---
+
+# 🧪 Practical: Three-Way Merge (ORT Strategy)
+
+## 🔹 Step 1: Create Repository
+
+```bash
+git init three-way-demo
+cd three-way-demo
+```
+
+---
+
+## 🔹 Step 2: Create Initial Commits (Common Base)
+
+```bash
+echo "Version 1" > file.txt
+git add .
+git commit -m "Commit A"
+
+echo "Version 2" >> file.txt
+git commit -am "Commit B"
+
+echo "Version 3" >> file.txt
+git commit -am "Commit C"
+```
+
+👉 Now:
+
+```
+A---B---C (main)
+```
+
+---
+
+## 🔹 Step 3: Create Feature Branch
+
+```bash
+git checkout -b feature
+```
+
+👉 Both branches start from **C (common ancestor)**
+
+---
+
+## 🔹 Step 4: Add Changes in Feature Branch
+
+```bash
+echo "Feature work 1" >> file.txt
+git commit -am "Commit D"
+
+echo "Feature work 2" >> file.txt
+git commit -am "Commit E"
+```
+
+👉 Now:
+
+```
+A---B---C
+         \
+          D---E (feature)
+```
+
+---
+
+## 🔹 Step 5: Switch to Main & Add Changes
+
+```bash
+git checkout master
+
+echo "Main work" >> file.txt
+git commit -am "Commit F"
+```
+
+👉 Now:
+
+```
+A---B---C---F (main)
+         \
+          D---E (feature)
+```
+
+---
+
+## 🔥 Step 6: Perform Merge (Three-Way Happens)
+
+```bash
+git merge feature
+```
+
+👉 Output:
+
+```
+Merge made by the 'ort' strategy.
+```
+
+---
+
+## 🔹 Step 7: Verify Merge
+
+```bash
+git log --oneline --graph
+```
+
+👉 Output:
+
+```
+A---B---C---F-------M (main)
+         \         /
+          D---E (feature)
+```
+
+---
+
+## 🔹 Explanation
+
+* `C` → Common ancestor
+* `F` → Latest commit in **main (target)**
+* `E` → Latest commit in **feature (source)**
+* `M` → Merge commit
+
+---
+
+## 🔹 Important
+
+👉 Merge commit **M has two parents**:
+
+* `F` (main branch)
+* `E` (feature branch)
+
+---
+
+---
