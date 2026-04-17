@@ -52,18 +52,18 @@ A Pull Request (PR) is a formal request to merge your changes from one branch in
 
 PRs are especially useful when working in a team or collaborating on code, because they ensure that code is:
 
-Reviewed before merging
-Approved by the right person
-Tested before going live
+* Reviewed before merging
+* Approved by the right person
+* Tested before going live
 
 ---
 ## Common Use Cases
 
-You fixed a bug or added a new feature in a branch (hotfix, feature/login, etc.).
-You now want that code to go into master or main.
-Instead of merging it directly, you raise a PR for:
-Team to review
-Ensure there are no conflicts
-Approve and merge safely
+* You fixed a bug or added a new feature in a branch (hotfix, feature/login, etc.).
+* You now want that code to go into master or main.
+* Instead of merging it directly, you raise a PR for:
+* Team to review
+* Ensure there are no conflicts
+* Approve and merge safely
 
 ---
