@@ -204,5 +204,39 @@ git restore --staged <file>
 git commit -m "Fixed accidental commit"
 git push -f
 ```
+---
+### Difference Between Git Branch and Git Tag
 
-### SUMMARY - RESET, REVERT
+| Feature               | Branch                                              | Tag                                      |
+| --------------------- | --------------------------------------------------- | ---------------------------------------- |
+| **Nature**            | **Mutable** – can change, updated over time         | **Immutable** – fixed reference point    |
+| **Purpose**           | Used during development, testing, feature isolation | Used to mark a specific version/release  |
+| **Creation Time**     | Created while development is still in progress      | Created after production/stable release  |
+| **Source**            | Can be created from any branch                      | Usually created from main or master      |
+| **Commands to List**  | `git branch`                                        | `git tag`                                |
+| **Command to Create** | `git branch <branch-name>`                          | `git tag <tag-name>`                     |
+| **Command to Push**   | `git push <alias> <branch-name>`                    | `git push <alias> <tag-name>`            |
+| **Push All**          | `git push <alias> --all`                            | `git push <alias> --tags`                |
+| **Command to Delete** | `git branch -d <branch-name>`                       | `git tag -d <tag-name>`                  |
+| **Common Use Case**   | Feature development, bug fixes, testing             | Marking releases like `v1.0.0`, `v2.0.1` |
+
+----
+
+### Git Best Practices
+
+1. Don't commit code in the middle of work.
+
+2. Test your code before you commit.
+
+3. give proper, clear commit messages
+
+4. Use feature branches - Never commit directly to main
+
+5. Communicate with the team to avoid merge conflicts.
+
+6. Avoid blind merging - Always raise pull requests(PR)
+
+7. Monitor and Maintain Branch health
+
+8. Manage and clean your stashes
+---
